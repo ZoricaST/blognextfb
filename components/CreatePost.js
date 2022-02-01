@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import fire from '../config/fire-conf';
 import firebase from 'firebase/compat/app';
+import styles from '../styles/Home.module.css'
 
 import 'firebase/compat/firestore';
 
@@ -42,7 +43,7 @@ const CreatePost = () => {
           Content<br />
           <textarea value={content} onChange={({target}) => setContent(target.value)} />
         </div>
-        <button type="submit">Save</button>
+        <button className={styles.btn} type="submit">Save</button>
       </form>
     </div>
   )

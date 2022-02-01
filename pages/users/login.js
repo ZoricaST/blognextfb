@@ -3,6 +3,7 @@ import { useState } from 'react';
 import fire from '../../config/fire-conf';
 import { useRouter } from 'next/router'
 import "firebase/compat/auth";
+import styles from '../../styles/register.module.css'
 
 
   const Login = () => {
@@ -32,15 +33,18 @@ import "firebase/compat/auth";
   }
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className={styles.divform}>
+      <h1 >Login</h1>
       {notify}
       <form onSubmit={handleLogin}>
-        Email<input type="text" value={username} onChange={({target}) => setUsername(target.value)} />
+      <label >Email: </label> <br />
+      <input className={styles.inputs} type="text" value={username} onChange={({target}) => setUsername(target.value)} />
+        <br /> <br />
+       
+        <label >Password: </label> <br />
+        <input className={styles.inputs} type="password" value={password} onChange={({target}) => setPassword(target.value)} />
         <br />
-        Password<input type="password" value={password} onChange={({target}) => setPassword(target.value)} />
-        <br />
-        <button type="submit">Login</button>
+        <button className={styles.btn} type="submit">Login</button>
       </form>
     </div>
   )

@@ -1,12 +1,15 @@
 // pages/index.js
+
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import CreatePost from '../components/CreatePost';
 import Link from 'next/link';
 import fire from '../config/fire-conf';
 import "firebase/compat/auth";
+import styles from '../styles/Home.module.css'
 
 import 'firebase/compat/firestore';
+
 
 
 const Home = () => {
@@ -43,35 +46,38 @@ const Home = () => {
       });
   }
   return (
-    <div>
+    <div >
       <Head>
         <title>Blog App</title>
       </Head>
-      <h1>Blog</h1>
+
+      <h1 className={styles.title}>Blog</h1>
       {notification}
       {!loggedIn 
       ?
-        <div>
+        <div className={styles.dugmici}>
           <Link href="/users/register">
-            <a>Register</a>
+            <a className={styles.button2}>Register</a>
           </Link> | 
           <Link href="/users/login">
-            <a> Login</a>
+            <a className={styles.button1}> Login</a>
           </Link>
         </div>
       :
-        <button onClick={handleLogout}>Logout</button>
+        <button className={styles.button1} onClick={handleLogout}>Logout</button>
       }
-    <ul>
+    <div >
+    <ul >
         {blogs.map(blog =>
           <li key={blog.id}>
             <Link href="/blog/[id]" as={'/blog/' + blog.id }>
-              <a itemProp="hello">{blog.title}</a>
+              <a itemProp="hello"><h2>{blog.title}</h2></a>
             </Link>
           </li>
         )}
       </ul>
       {loggedIn && <CreatePost />}
+      </div>
     </div>
   )
 }
